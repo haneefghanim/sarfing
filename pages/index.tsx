@@ -78,7 +78,7 @@ export default function Home() {
                                 'text-red-700': seconds >= 20
                             })}
                         >
-                            {seconds}:{milliseconds}s
+                            {seconds}.{milliseconds}s
                         </div>
                         {isTimerRunning && (
                             <Button size="sm" variant="secondary" onClick={onClickPauseTimer}>
