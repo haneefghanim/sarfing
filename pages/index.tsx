@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
+import { MultiSelect, Option } from '@/components/ui/MultiSelect';
 import { cn } from '@/lib/utils';
 import Head from 'next/head';
 
@@ -16,10 +17,23 @@ const geistMono = localFont({
 });
 
 const roots = ['ك ت ب', 'ع ل م', 'د ر س', 'ذ ه ب', 'ن ز ل', 'ف ت ح', 'ج ل س', 'خ ر ج'];
+const allPatterns: Option[] = [
+    { value: '1', label: 'Pattern 1' },
+    { value: '2', label: 'Pattern 2' },
+    { value: '3', label: 'Pattern 3' },
+    { value: '4', label: 'Pattern 4' },
+    { value: '5', label: 'Pattern 5' },
+    { value: '6', label: 'Pattern 6' },
+    { value: '7', label: 'Pattern 7' },
+    { value: '8', label: 'Pattern 8' },
+    { value: '9', label: 'Pattern 9' },
+    { value: '10', label: 'Pattern 10' }
+];
 
 export default function Home() {
-    const [pattern, setPattern] = useState('');
-    const [root, setRoot] = useState('');
+    const [patternOptions, setPatternOptions] = useState(allPatterns.map((pattern) => pattern.value));
+    const [currentPattern, setCurrentPattern] = useState<string>();
+    const [currentRoot, setCurrentRoot] = useState('');
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -31,8 +45,8 @@ export default function Home() {
     const onClickGenerate = function () {
         setTime(0);
         setIsTimerRunning(true);
-        setPattern((Math.floor(Math.random() * 10) + 1).toString());
-        setRoot(roots[Math.floor(Math.random() * 8)]);
+        setCurrentPattern(patternOptions[Math.floor(Math.random() * patternOptions.length)]);
+        setCurrentRoot(roots[Math.floor(Math.random() * 8)]);
     };
 
     const onClickPauseTimer = function () {
@@ -60,16 +74,24 @@ export default function Home() {
                     Generates a 3-letter root and a pattern to conjugate it in. Aim to recite the sarf sagheer table in
                     less than 10-15s.
                 </p>
+                <MultiSelect
+                    options={allPatterns}
+                    onValueChange={setPatternOptions}
+                    defaultValue={patternOptions}
+                    placeholder="Select patterns"
+                    optionName="pattern"
+                    optionNamePlural="patterns"
+                />
                 <div>
-                    <Button size="lg" onClick={onClickGenerate}>
-                        {pattern && root ? 'Generate again' : 'Generate'}
+                    <Button size="lg" className="mt-2" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
+                        {currentPattern && currentRoot ? 'Generate again' : 'Generate'}
                     </Button>
                 </div>
-                {pattern && root && (
+                {currentPattern && currentRoot && (
                     <>
                         <div className="mt-2 rounded bg-blue-100 px-[0.5rem] py-[0.2rem] text-3xl">
-                            Do &quot;<strong className="font-medium">{root}</strong>&quot; in pattern{' '}
-                            <strong className="font-medium">{pattern}</strong>.
+                            Do &quot;<strong className="font-medium">{currentRoot}</strong>&quot; in pattern{' '}
+                            <strong className="font-medium">{currentPattern}</strong>.
                         </div>
                         <div
                             className={cn('mt-5 font-mono text-xl', {
