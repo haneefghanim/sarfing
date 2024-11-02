@@ -16,7 +16,29 @@ const geistMono = localFont({
     weight: '100 900'
 });
 
-const roots = ['ك ت ب', 'ع ل م', 'د ر س', 'ذ ه ب', 'ن ز ل', 'ف ت ح', 'ج ل س', 'خ ر ج'];
+const babs = ['ن', 'ف', 'ض', 'س', 'ح', 'ك'];
+const roots = [
+    'ك ت ب',
+    'ع ل م',
+    'د ر س',
+    'ذ ه ب',
+    'ن ز ل',
+    'ف ت ح',
+    'ج ل س',
+    'خ ر ج',
+    'ف ع ل',
+    'ف ل ح',
+    'ص د ق',
+    'ع م ل',
+    'ب د ل',
+    'ر ح م',
+    'م ل ك',
+    'ظ ل م',
+    'ب ل غ',
+    'ب ر ك',
+    'ح د ث',
+    'م ر ض'
+];
 const allPatterns: Option[] = [
     { value: '1', label: 'Pattern 1' },
     { value: '2', label: 'Pattern 2' },
@@ -34,6 +56,7 @@ export default function Home() {
     const [patternOptions, setPatternOptions] = useState(allPatterns.map((pattern) => pattern.value));
     const [currentPattern, setCurrentPattern] = useState<string>();
     const [currentRoot, setCurrentRoot] = useState('');
+    const [currentBab, setCurrentBab] = useState('');
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -46,7 +69,8 @@ export default function Home() {
         setTime(0);
         setIsTimerRunning(true);
         setCurrentPattern(patternOptions[Math.floor(Math.random() * patternOptions.length)]);
-        setCurrentRoot(roots[Math.floor(Math.random() * 8)]);
+        setCurrentRoot(roots[Math.floor(Math.random() * roots.length)]);
+        setCurrentBab(babs[Math.floor(Math.random() * babs.length)]);
     };
 
     const onClickPauseTimer = function () {
@@ -92,7 +116,10 @@ export default function Home() {
                     <>
                         <div className="mt-2 rounded bg-blue-100 px-[0.5rem] py-[0.2rem] text-3xl">
                             Do &quot;<strong className="font-medium">{currentRoot}</strong>&quot; in pattern{' '}
-                            <strong className="font-medium">{currentPattern}</strong>.
+                            <strong className="font-medium">
+                                {currentPattern}
+                                {currentPattern === '1' ? ` (${currentBab})` : ''}
+                            </strong>
                         </div>
                         <div
                             className={cn('mt-5 font-mono text-xl', {
