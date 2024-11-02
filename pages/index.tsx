@@ -81,6 +81,7 @@ export default function Home() {
                     placeholder="Select patterns"
                     optionName="pattern"
                     optionNamePlural="patterns"
+                    className="max-w-[300px] sm:max-w-[440px]"
                 />
                 <div>
                     <Button size="lg" className="mt-2" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
