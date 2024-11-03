@@ -1,9 +1,12 @@
 import localFont from 'next/font/local';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
-import { MultiSelect, Option } from '@/components/ui/MultiSelect';
+import { MultiSelect } from '@/components/ui/MultiSelect';
 import { cn } from '@/lib/utils';
 import Head from 'next/head';
+import SarfPatternTable from '@/components/ui/SarfPatternTable';
+import { BabId, PatternId, sarfPatterns, babs } from '@/lib/sarf-patterns';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -16,7 +19,6 @@ const geistMono = localFont({
     weight: '100 900'
 });
 
-const babs = ['ن', 'ف', 'ض', 'س', 'ح', 'ك'];
 const roots = [
     'ك ت ب',
     'ع ل م',
@@ -39,24 +41,12 @@ const roots = [
     'ح د ث',
     'م ر ض'
 ];
-const allPatterns: Option[] = [
-    { value: '1', label: 'Pattern 1' },
-    { value: '2', label: 'Pattern 2' },
-    { value: '3', label: 'Pattern 3' },
-    { value: '4', label: 'Pattern 4' },
-    { value: '5', label: 'Pattern 5' },
-    { value: '6', label: 'Pattern 6' },
-    { value: '7', label: 'Pattern 7' },
-    { value: '8', label: 'Pattern 8' },
-    { value: '9', label: 'Pattern 9' },
-    { value: '10', label: 'Pattern 10' }
-];
 
 export default function Home() {
-    const [patternOptions, setPatternOptions] = useState(allPatterns.map((pattern) => pattern.value));
-    const [currentPattern, setCurrentPattern] = useState<string>();
+    const [patternOptions, setPatternOptions] = useState(sarfPatterns.map((pattern) => pattern.value));
+    const [currentPattern, setCurrentPattern] = useState<PatternId>();
     const [currentRoot, setCurrentRoot] = useState('');
-    const [currentBab, setCurrentBab] = useState('');
+    const [currentBab, setCurrentBab] = useState<BabId>();
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -99,18 +89,32 @@ export default function Home() {
                     less than 10-15s.
                 </p>
                 <MultiSelect
-                    options={allPatterns}
-                    onValueChange={setPatternOptions}
+                    options={sarfPatterns}
+                    onValueChange={(value) => setPatternOptions(value as PatternId[])}
                     defaultValue={patternOptions}
                     placeholder="Select patterns"
                     optionName="pattern"
                     optionNamePlural="patterns"
                     className="max-w-[300px] sm:max-w-[440px]"
                 />
-                <div>
-                    <Button size="lg" className="mt-2" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
+                <div className="mt-2">
+                    <Button size="lg" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
                         {currentPattern && currentRoot ? 'Generate again' : 'Generate'}
                     </Button>
+                    {currentPattern && currentBab && (
+                        <Drawer>
+                            <DrawerTrigger>
+                                <Button size="lg" className="ml-2" variant="outline">
+                                    Hint
+                                </Button>
+                            </DrawerTrigger>
+                            <DrawerContent>
+                                <div className="ml-auto mr-auto max-w-[600px] p-4">
+                                    <SarfPatternTable patternId={currentPattern} babId={currentBab} />
+                                </div>
+                            </DrawerContent>
+                        </Drawer>
+                    )}
                 </div>
                 {currentPattern && currentRoot && (
                     <>
