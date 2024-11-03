@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import Head from 'next/head';
 import SarfPatternTable from '@/components/ui/SarfPatternTable';
 import { BabId, PatternId, sarfPatterns, babs } from '@/lib/sarf-patterns';
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
+import { Drawer, DrawerContent, DrawerTrigger, DrawerWrapper } from '@/components/ui/Drawer';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -76,72 +76,74 @@ export default function Home() {
     }, [isTimerRunning, time]);
 
     return (
-        <div
-            className={`${geistSans.variable} ${geistMono.variable} grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20`}
-        >
-            <Head>
-                <title>Sarfing App</title>
-            </Head>
-            <main className="row-start-2 flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
-                <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">Sarfing App</h1>
-                <p className="mb-2 max-w-[300px] sm:max-w-[440px]">
-                    Generates a 3-letter root and a pattern to conjugate it in. Aim to recite the sarf sagheer table in
-                    less than 10-15s.
-                </p>
-                <MultiSelect
-                    options={sarfPatterns}
-                    onValueChange={(value) => setPatternOptions(value as PatternId[])}
-                    defaultValue={patternOptions}
-                    placeholder="Select patterns"
-                    optionName="pattern"
-                    optionNamePlural="patterns"
-                    className="max-w-[300px] sm:max-w-[440px]"
-                />
-                <div className="mt-2">
-                    <Button size="lg" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
-                        {currentPattern && currentRoot ? 'Generate again' : 'Generate'}
-                    </Button>
-                    {currentPattern && currentBab && (
-                        <Drawer>
-                            <DrawerTrigger>
-                                <Button size="lg" className="ml-2" variant="outline">
-                                    Hint
-                                </Button>
-                            </DrawerTrigger>
-                            <DrawerContent>
-                                <div className="ml-auto mr-auto max-w-[600px] p-4">
-                                    <SarfPatternTable patternId={currentPattern} babId={currentBab} />
-                                </div>
-                            </DrawerContent>
-                        </Drawer>
-                    )}
-                </div>
-                {currentPattern && currentRoot && (
-                    <>
-                        <div className="mt-2 rounded bg-blue-100 px-[0.5rem] py-[0.2rem] text-3xl">
-                            Do &quot;<strong className="font-medium">{currentRoot}</strong>&quot; in pattern{' '}
-                            <strong className="font-medium">
-                                {currentPattern}
-                                {currentPattern === '1' ? ` (${currentBab})` : ''}
-                            </strong>
-                        </div>
-                        <div
-                            className={cn('mt-5 font-mono text-xl', {
-                                'text-green-700': seconds <= 10,
-                                'text-yellow-600': seconds > 10 && seconds < 20,
-                                'text-red-700': seconds >= 20
-                            })}
-                        >
-                            {seconds}.{milliseconds}s
-                        </div>
-                        {isTimerRunning && (
-                            <Button size="sm" variant="secondary" onClick={onClickPauseTimer}>
-                                Stop
-                            </Button>
+        <DrawerWrapper>
+            <div
+                className={`${geistSans.variable} ${geistMono.variable} grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20`}
+            >
+                <Head>
+                    <title>Sarfing App</title>
+                </Head>
+                <main className="row-start-2 flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
+                    <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">Sarfing App</h1>
+                    <p className="mb-2 max-w-[300px] sm:max-w-[440px]">
+                        Generates a 3-letter root and a pattern to conjugate it in. Aim to recite the sarf sagheer table
+                        in less than 10-15s.
+                    </p>
+                    <MultiSelect
+                        options={sarfPatterns}
+                        onValueChange={(value) => setPatternOptions(value as PatternId[])}
+                        defaultValue={patternOptions}
+                        placeholder="Select patterns"
+                        optionName="pattern"
+                        optionNamePlural="patterns"
+                        className="max-w-[300px] sm:max-w-[440px]"
+                    />
+                    <div className="mt-2">
+                        <Button size="lg" onClick={onClickGenerate} disabled={patternOptions.length === 0}>
+                            {currentPattern && currentRoot ? 'Generate again' : 'Generate'}
+                        </Button>
+                        {currentPattern && currentBab && (
+                            <Drawer>
+                                <DrawerTrigger>
+                                    <Button size="lg" className="ml-2" variant="outline">
+                                        Hint
+                                    </Button>
+                                </DrawerTrigger>
+                                <DrawerContent>
+                                    <div className="ml-auto mr-auto max-w-[600px] p-4">
+                                        <SarfPatternTable patternId={currentPattern} babId={currentBab} />
+                                    </div>
+                                </DrawerContent>
+                            </Drawer>
                         )}
-                    </>
-                )}
-            </main>
-        </div>
+                    </div>
+                    {currentPattern && currentRoot && (
+                        <>
+                            <div className="mt-2 rounded bg-blue-100 px-[0.5rem] py-[0.2rem] text-3xl">
+                                Do &quot;<strong className="font-medium">{currentRoot}</strong>&quot; in pattern{' '}
+                                <strong className="font-medium">
+                                    {currentPattern}
+                                    {currentPattern === '1' ? ` (${currentBab})` : ''}
+                                </strong>
+                            </div>
+                            <div
+                                className={cn('mt-5 font-mono text-xl', {
+                                    'text-green-700': seconds <= 10,
+                                    'text-yellow-600': seconds > 10 && seconds < 20,
+                                    'text-red-700': seconds >= 20
+                                })}
+                            >
+                                {seconds}.{milliseconds}s
+                            </div>
+                            {isTimerRunning && (
+                                <Button size="sm" variant="secondary" onClick={onClickPauseTimer}>
+                                    Stop
+                                </Button>
+                            )}
+                        </>
+                    )}
+                </main>
+            </div>
+        </DrawerWrapper>
     );
 }

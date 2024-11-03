@@ -77,6 +77,14 @@ const DrawerDescription = React.forwardRef<
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
+const DrawerWrapper = function ({ children }: { children: React.ReactNode }) {
+    return (
+        <div vaul-drawer-wrapper="">
+            <div className="relative flex min-h-screen flex-col bg-background">{children}</div>
+        </div>
+    );
+};
+
 export {
     Drawer,
     DrawerPortal,
@@ -87,5 +95,6 @@ export {
     DrawerHeader,
     DrawerFooter,
     DrawerTitle,
-    DrawerDescription
+    DrawerDescription,
+    DrawerWrapper
 };
