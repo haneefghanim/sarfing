@@ -57,7 +57,7 @@ export default function Home() {
 
     const onClickGenerate = function () {
         setTime(0);
-        setIsTimerRunning(true);
+        setIsTimerRunning(false);
         setCurrentPattern(patternOptions[Math.floor(Math.random() * patternOptions.length)]);
         setCurrentRoot(roots[Math.floor(Math.random() * roots.length)]);
         setCurrentBab(babs[Math.floor(Math.random() * babs.length)]);
@@ -135,11 +135,18 @@ export default function Home() {
                             >
                                 {seconds}.{milliseconds}s
                             </div>
-                            {isTimerRunning && (
-                                <Button size="sm" variant="secondary" onClick={onClickPauseTimer}>
-                                    Stop
-                                </Button>
-                            )}
+                            <Button
+                                size="sm"
+                                variant="secondary"
+                                className={
+                                    isTimerRunning
+                                        ? 'bg-red-100 text-red-900 hover:bg-red-200'
+                                        : 'bg-green-100 text-green-800 hover:bg-green-200'
+                                }
+                                onClick={onClickPauseTimer}
+                            >
+                                {isTimerRunning ? 'Stop' : 'Start'}
+                            </Button>
                         </>
                     )}
                 </main>
