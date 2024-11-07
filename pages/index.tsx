@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import Head from 'next/head';
 import SarfPatternTable from '@/components/ui/SarfPatternTable';
 import { BabId, PatternId, sarfPatterns, babs } from '@/lib/sarf-patterns';
+import { roots } from '@/lib/roots';
 import { Drawer, DrawerContent, DrawerTrigger, DrawerWrapper } from '@/components/ui/Drawer';
 
 const geistSans = localFont({
@@ -19,29 +20,6 @@ const geistMono = localFont({
     weight: '100 900'
 });
 
-const roots = [
-    'ك ت ب',
-    'ع ل م',
-    'د ر س',
-    'ذ ه ب',
-    'ن ز ل',
-    'ف ت ح',
-    'ج ل س',
-    'خ ر ج',
-    'ف ع ل',
-    'ف ل ح',
-    'ص د ق',
-    'ع م ل',
-    'ب د ل',
-    'ر ح م',
-    'م ل ك',
-    'ظ ل م',
-    'ب ل غ',
-    'ب ر ك',
-    'ح د ث',
-    'م ر ض'
-];
-
 export default function Home() {
     const [patternOptions, setPatternOptions] = useState(sarfPatterns.map((pattern) => pattern.value));
     const [currentPattern, setCurrentPattern] = useState<PatternId>();
@@ -50,9 +28,8 @@ export default function Home() {
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-    // Seconds calculation
+    // Timer calculation
     const seconds = Math.floor(time / 100);
-    // Milliseconds calculation
     const milliseconds = time % 100;
 
     const onClickGenerate = function () {
