@@ -1,5 +1,6 @@
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/Table';
+import { Table, TableBody, TableCell, TableRow, TableCaption } from '@/components/ui/Table';
 import { PastTenseVerb } from '@/lib/past-tense-irregular-verbs';
+import capitalize from 'lodash/capitalize';
 
 interface Props {
     verb: PastTenseVerb;
@@ -10,6 +11,9 @@ export default function PastTenseVerbTable({ verb }: Props) {
 
     return (
         <Table className="text-left text-sm sm:text-lg">
+            <TableCaption>
+                {capitalize(verb.type)} {verb.pattern} {verb.bab} - {verb.irregularity}
+            </TableCaption>
             <TableBody>
                 <TableRow>
                     <TableCell>{table[2]}</TableCell>
@@ -32,7 +36,7 @@ export default function PastTenseVerbTable({ verb }: Props) {
                     <TableCell>{table[9]}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>{' '}</TableCell>
+                    <TableCell> </TableCell>
                     <TableCell>{table[13]}</TableCell>
                     <TableCell>{table[12]}</TableCell>
                 </TableRow>

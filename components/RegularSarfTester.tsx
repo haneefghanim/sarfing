@@ -58,7 +58,7 @@ export default function RegularSarfTester() {
                     placeholder="Select patterns"
                     optionName="pattern"
                     optionNamePlural="patterns"
-                    className="max-w-[300px] sm:max-w-[440px]"
+                    className="mb-4 max-w-[300px] sm:max-w-[440px]"
                 />
                 <div className="mt-2">
                     <Button size="lg" onClick={onClickGenerate} disabled={patternOptions.length === 0}>

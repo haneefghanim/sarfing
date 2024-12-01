@@ -4,13 +4,18 @@ import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
 import { Separator } from '@/components/ui/Separator';
-import { pastTenseVerbs, PastTenseVerb } from '@/lib/past-tense-irregular-verbs';
+import { pastTenseVerbs, PastTenseVerb, allIrregularities } from '@/lib/past-tense-irregular-verbs';
 import PastTenseVerbTable from '@/components/ui/PastTenseVerbTable';
+import { MultiSelect } from '@/components/ui/MultiSelect';
+
+const allIrregularityOptions = allIrregularities.map((irregularity) => ({ label: irregularity, value: irregularity }));
 
 export default function IrregularSarfTester() {
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [currentVerb, setCurrentVerb] = useState<PastTenseVerb>();
+    const [currentVerbIndex, setCurrentVerbIndex] = useState<number>();
+    const [irregularities, setIrregularities] = useState(allIrregularities);
 
     // Timer calculation
     const seconds = Math.floor(time / 100);
@@ -19,7 +24,12 @@ export default function IrregularSarfTester() {
     const onClickGenerate = function () {
         setTime(0);
         setIsTimerRunning(false);
-        setCurrentVerb(pastTenseVerbs[Math.floor(Math.random() * pastTenseVerbs.length)]);
+        const filteredPastTenseVerbs = pastTenseVerbs.filter((verb) => {
+            return irregularities.includes(verb.irregularity);
+        });
+        const verb = filteredPastTenseVerbs[Math.floor(Math.random() * filteredPastTenseVerbs.length)];
+        setCurrentVerb(verb);
+        setCurrentVerbIndex(Math.floor(Math.random() * verb.table.length));
     };
 
     const onClickPauseTimer = function () {
@@ -41,13 +51,23 @@ export default function IrregularSarfTester() {
                     Irregular Sarfing App
                 </CardTitle>
                 <CardDescription>
-                    Generates a past tense verb (can be either active or passive) with an irregularity in its roots. Aim
-                    to recite the full past tense verb table in under 30s.
+                    Generates a past tense verb (active or passive) with an irregularity in its roots. First, identify
+                    which irregularity, pattern number and conjugation you are looking at, then aim to recite the full
+                    past tense verb table in under 30s.
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <div>
-                    <Button size="lg" onClick={onClickGenerate} disabled={false}>
+                    <MultiSelect
+                        options={allIrregularityOptions}
+                        onValueChange={(value) => setIrregularities(value)}
+                        defaultValue={irregularities}
+                        placeholder="Select irregularities"
+                        optionName="irregularity"
+                        optionNamePlural="irregularities"
+                        className="mb-4 max-w-[300px] sm:max-w-[440px]"
+                    />
+                    <Button size="lg" onClick={onClickGenerate} disabled={irregularities.length === 0}>
                         Generate
                     </Button>
                     {currentVerb && (
@@ -69,7 +89,8 @@ export default function IrregularSarfTester() {
                     <>
                         <Separator className="my-4" />
                         <div className="mt-2 rounded bg-blue-100 px-5 py-3 text-3xl">
-                            Do &quot;<strong className="font-medium">{currentVerb.table[0]}</strong>&quot;
+                            Do &quot;<strong className="font-medium">{currentVerb.table[currentVerbIndex || 0]}</strong>
+                            &quot;
                         </div>
                         <div
                             className={cn('mt-5 font-mono text-xl', {
