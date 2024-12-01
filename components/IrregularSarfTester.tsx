@@ -52,7 +52,7 @@ export default function IrregularSarfTester() {
                 </CardTitle>
                 <CardDescription>
                     Generates a past tense verb (active or passive) with an irregularity in its roots and in a random
-                    pronoun conjugation. Identify the irregularity, pattern number and conjugation you are looking at,
+                    pronoun conjugation. Identify the irregularity, roots, pattern and conjugation you are looking at,
                     then recite the full past tense verb table.
                 </CardDescription>
             </CardHeader>
