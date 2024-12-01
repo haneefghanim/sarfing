@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
 import { Separator } from '@/components/ui/Separator';
 import { pastTenseVerbs, PastTenseVerb, allIrregularities } from '@/lib/past-tense-irregular-verbs';
-import PastTenseVerbTable from '@/components/ui/PastTenseVerbTable';
+import PastTenseVerbTable from '@/components/PastTenseVerbTable';
 import { MultiSelect } from '@/components/ui/MultiSelect';
 
 const allIrregularityOptions = allIrregularities.map((irregularity) => ({ label: irregularity, value: irregularity }));

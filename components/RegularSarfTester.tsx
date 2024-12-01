@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { MultiSelect } from '@/components/ui/MultiSelect';
 import { cn } from '@/lib/utils';
-import SarfPatternTable from '@/components/ui/SarfPatternTable';
+import SarfPatternTable from '@/components/SarfPatternTable';
 import { BabId, PatternId, sarfPatterns, babs } from '@/lib/sarf-patterns';
 import { roots } from '@/lib/roots';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
