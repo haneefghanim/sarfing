@@ -51,9 +51,8 @@ export default function IrregularSarfTester() {
                     Irregular Sarfing App
                 </CardTitle>
                 <CardDescription>
-                    Generates a past tense verb (active or passive) with an irregularity in its roots and in a random
-                    pronoun conjugation. Identify the irregularity, roots, pattern and conjugation you are looking at,
-                    then recite the full past tense verb table.
+                    Generates a past tense verb. Identify the irregularity, roots, pattern and conjugation you are
+                    looking at, then recite the full past tense verb table.
                 </CardDescription>
             </CardHeader>
             <CardContent>
