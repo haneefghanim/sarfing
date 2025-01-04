@@ -21,7 +21,10 @@ lines.forEach((line) => {
         }
         const [type, pattern, ...rest] = line.toLowerCase().split(' ');
         const bab = rest.length > 0 ? rest.join(' ') : undefined;
-        currentVerb = { irregularity: 'لفيف', type, pattern, bab, table: [] };
+        currentVerb = { irregularity: 'لفيف', state: 'رفع', type, pattern, bab, table: [] };
+        if (pattern !== '1') {
+            delete currentVerb.bab;
+        }
     } else {
         currentVerb.table.push(line);
     }

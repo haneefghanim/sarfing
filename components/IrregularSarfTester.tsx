@@ -4,18 +4,25 @@ import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/Drawer';
 import { Separator } from '@/components/ui/Separator';
-import { pastTenseVerbs, PastTenseVerb, allIrregularities } from '@/lib/past-tense-irregular-verbs';
-import PastTenseVerbTable from '@/components/PastTenseVerbTable';
+import { pastTenseVerbs } from '@/lib/past-tense-irregular-verbs';
+import { presentTenseVerbs } from '@/lib/present-tense-irregular-verbs';
+import { Verb } from '@/lib/verb';
+import { allIrregularities } from '@/lib/irregularities';
+import VerbTable from '@/components/VerbTable';
 import { MultiSelect } from '@/components/ui/MultiSelect';
 
 const allIrregularityOptions = allIrregularities.map((irregularity) => ({ label: irregularity, value: irregularity }));
 
+const allVerbTypes = ['الماضي', 'المضارع'];
+const allVerbTypeOptions = allVerbTypes.map((verb) => ({ label: verb, value: verb }));
+
 export default function IrregularSarfTester() {
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
-    const [currentVerb, setCurrentVerb] = useState<PastTenseVerb>();
+    const [currentVerb, setCurrentVerb] = useState<Verb>();
     const [currentVerbIndex, setCurrentVerbIndex] = useState<number>();
     const [irregularities, setIrregularities] = useState(allIrregularities);
+    const [verbTypes, setVerbTypes] = useState(allVerbTypes);
 
     // Timer calculation
     const seconds = Math.floor(time / 100);
@@ -24,10 +31,18 @@ export default function IrregularSarfTester() {
     const onClickGenerate = function () {
         setTime(0);
         setIsTimerRunning(false);
-        const filteredPastTenseVerbs = pastTenseVerbs.filter((verb) => {
+        const verbLists: Verb[][] = [];
+        if (verbTypes.includes('الماضي')) {
+            verbLists.push(pastTenseVerbs);
+        }
+        if (verbTypes.includes('المضارع')) {
+            verbLists.push(presentTenseVerbs);
+        }
+        const verbList = verbLists[Math.floor(Math.random() * verbLists.length)];
+        const filteredVerbs = verbList.filter((verb) => {
             return irregularities.includes(verb.irregularity);
         });
-        const verb = filteredPastTenseVerbs[Math.floor(Math.random() * filteredPastTenseVerbs.length)];
+        const verb = filteredVerbs[Math.floor(Math.random() * filteredVerbs.length)];
         setCurrentVerb(verb);
         setCurrentVerbIndex(Math.floor(Math.random() * verb.table.length));
     };
@@ -51,12 +66,21 @@ export default function IrregularSarfTester() {
                     Irregular Sarfing App
                 </CardTitle>
                 <CardDescription>
-                    Generates a past tense verb. Identify the irregularity, roots, pattern and conjugation you are
-                    looking at, then recite the full past tense verb table.
+                    Generates a verb. Identify the irregularity, roots, pattern and conjugation you are looking at, then
+                    recite the full conjugated verb table.
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <div>
+                    <MultiSelect
+                        options={allVerbTypeOptions}
+                        onValueChange={(value) => setVerbTypes(value)}
+                        defaultValue={verbTypes}
+                        placeholder="Select verb types"
+                        optionName="verb type"
+                        optionNamePlural="verb types"
+                        className="mb-4 max-w-[300px] sm:max-w-[440px]"
+                    />
                     <MultiSelect
                         options={allIrregularityOptions}
                         onValueChange={(value) => setIrregularities(value)}
@@ -78,7 +102,7 @@ export default function IrregularSarfTester() {
                             </DrawerTrigger>
                             <DrawerContent>
                                 <div className="ml-auto mr-auto max-w-[600px] p-4">
-                                    <PastTenseVerbTable verb={currentVerb} />
+                                    <VerbTable verb={currentVerb} />
                                 </div>
                             </DrawerContent>
                         </Drawer>

@@ -1,18 +1,20 @@
 import { Table, TableBody, TableCell, TableRow, TableCaption } from '@/components/ui/Table';
-import { PastTenseVerb } from '@/lib/past-tense-irregular-verbs';
+import { Verb } from '@/lib/verb';
 import capitalize from 'lodash/capitalize';
 
 interface Props {
-    verb: PastTenseVerb;
+    verb: Verb;
 }
 
-export default function PastTenseVerbTable({ verb }: Props) {
+export default function VerbTable({ verb }: Props) {
     const table = verb.table;
 
     return (
         <Table className="text-left text-sm sm:text-lg">
             <TableCaption>
-                {capitalize(verb.type)} {verb.pattern} {verb.bab} - {verb.irregularity}
+                {verb.state && `(${verb.state}) `}
+                {verb.state ? `المضارع` : 'الماضي'} {capitalize(verb.type)} {verb.pattern} {verb.bab} -{' '}
+                {verb.irregularity}
             </TableCaption>
             <TableBody>
                 <TableRow>

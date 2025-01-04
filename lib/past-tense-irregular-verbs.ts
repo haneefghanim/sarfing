@@ -1,13 +1,4 @@
-export type Irregularity = 'مهموز' | 'مثال' | 'أجوف' | 'مضاعف' | 'مضاعف' | 'ناقص' | 'لفيف';
-export interface PastTenseVerb {
-    irregularity: Irregularity;
-    type: 'passive' | 'active';
-    pattern: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '10';
-    table: string[];
-    bab?: string;
-}
-
-export const allIrregularities = ['مهموز', 'مثال', 'أجوف', 'مضاعف', 'ناقص', 'لفيف'];
+import { Verb as PastTenseVerb } from './verb';
 
 export const pastTenseVerbs: PastTenseVerb[] = [
     {
