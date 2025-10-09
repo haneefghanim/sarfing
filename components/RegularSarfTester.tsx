@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import shuffle from 'lodash/shuffle';
 import { Button } from '@/components/ui/Button';
 import { MultiSelect } from '@/components/ui/MultiSelect';
 import { cn } from '@/lib/utils';
@@ -11,8 +12,11 @@ import { Separator } from '@/components/ui/Separator';
 
 export default function RegularSarfTester() {
     const [patternOptions, setPatternOptions] = useState(sarfPatterns.map((pattern) => pattern.value));
+    const [patternStack, setPatternStack] = useState<PatternId[]>([]);
     const [currentPattern, setCurrentPattern] = useState<PatternId>();
-    const [currentRoot, setCurrentRoot] = useState('');
+    const [rootStack, setRootStack] = useState<string[]>([]);
+    const [currentRoot, setCurrentRoot] = useState<string>('');
+    const [babStack, setBabStack] = useState<BabId[]>([]);
     const [currentBab, setCurrentBab] = useState<BabId>();
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -22,15 +26,39 @@ export default function RegularSarfTester() {
     const milliseconds = time % 100;
 
     const onClickGenerate = function () {
+        let patternStackCopy = [...patternStack];
+        let rootStackCopy = [...rootStack];
+        let babStackCopy = [...babStack];
+
+        if (patternStackCopy.length === 0) {
+            patternStackCopy = shuffle(patternOptions);
+        }
+
+        if (rootStackCopy.length === 0) {
+            rootStackCopy = shuffle(roots);
+        }
+
+        if (babStackCopy.length === 0) {
+            babStackCopy = shuffle(babs);
+        }
+
         setTime(0);
         setIsTimerRunning(false);
-        setCurrentPattern(patternOptions[Math.floor(Math.random() * patternOptions.length)]);
-        setCurrentRoot(roots[Math.floor(Math.random() * roots.length)]);
-        setCurrentBab(babs[Math.floor(Math.random() * babs.length)]);
+        setCurrentPattern(patternStackCopy.pop());
+        setCurrentRoot(rootStackCopy.pop() as string);
+        setCurrentBab(babStackCopy.pop());
+        setPatternStack(patternStackCopy);
+        setRootStack(rootStackCopy);
+        setBabStack(babStackCopy);
     };
 
     const onClickPauseTimer = function () {
         setIsTimerRunning(!isTimerRunning);
+    };
+
+    const onPatternOptionsChange = function (value: PatternId[]) {
+        setPatternOptions(value);
+        setPatternStack([]);
     };
 
     useEffect(() => {
@@ -53,7 +81,7 @@ export default function RegularSarfTester() {
             <CardContent>
                 <MultiSelect
                     options={sarfPatterns}
-                    onValueChange={(value) => setPatternOptions(value as PatternId[])}
+                    onValueChange={(value) => onPatternOptionsChange(value as PatternId[])}
                     defaultValue={patternOptions}
                     placeholder="Select patterns"
                     optionName="pattern"
