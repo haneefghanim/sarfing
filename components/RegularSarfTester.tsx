@@ -101,7 +101,7 @@ export default function RegularSarfTester() {
                             </DrawerTrigger>
                             <DrawerContent>
                                 <div className="ml-auto mr-auto max-w-[600px] p-4">
-                                    <SarfPatternTable patternId={currentPattern} babId={currentBab} />
+                                    <SarfPatternTable patternId={currentPattern} babId={currentBab} currentRoot={currentRoot} />
                                 </div>
                             </DrawerContent>
                         </Drawer>

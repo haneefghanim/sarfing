@@ -1,14 +1,22 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table';
+import { generateSarfTableFromRoot } from '@/lib/generate-sarf-table-from-root';
 import { sarfPatterns, PatternId, BabId } from '@/lib/sarf-patterns';
 
 interface Props {
     patternId: PatternId;
     babId?: BabId;
+    currentRoot?: string;
 }
 
-export default function SarfPatternTable({ patternId, babId }: Props) {
+export default function SarfPatternTable({ patternId, babId, currentRoot }: Props) {
     const pattern = sarfPatterns.find((pattern) => pattern.value === patternId);
-    const table = pattern ? (Array.isArray(pattern.table) ? pattern.table : pattern.table[babId!]) : [];
+    let table: string[];
+
+    if (currentRoot && patternId !== '1') {
+        table = generateSarfTableFromRoot(currentRoot, patternId);
+    } else {
+        table = pattern ? (Array.isArray(pattern.table) ? pattern.table : pattern.table[babId!]) : [];
+    }
 
     return (
         <Table className="text-left text-sm sm:text-lg">
