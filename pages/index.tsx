@@ -23,7 +23,7 @@ export default function Home() {
                 className={`${geistSans.variable} ${geistMono.variable} p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20`}
             >
                 <Head>
-                    <title>Sarfing App</title>
+                    <title>Sarfing: Practice your Arabic morphology/sarf skills</title>
                 </Head>
                 <Tabs defaultValue="regular" className="max-w-[500px] mx-auto">
                     <TabsList className="grid w-full grid-cols-2">
