@@ -13,14 +13,13 @@ import { MultiSelect } from '@/components/ui/MultiSelect';
 
 const allIrregularityOptions = allIrregularities.map((irregularity) => ({ label: irregularity, value: irregularity }));
 
-const allVerbTypes = ['الماضي', 'المضارع'];
+const allVerbTypes = ['الماضي المعروف', 'المضارع المعروف', 'الماضي المجهول', 'المضارع المجهول'];
 const allVerbTypeOptions = allVerbTypes.map((verb) => ({ label: verb, value: verb }));
 
 export default function IrregularSarfTester() {
     const [time, setTime] = useState(0);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [currentVerb, setCurrentVerb] = useState<Verb>();
-    const [currentVerbIndex, setCurrentVerbIndex] = useState<number>();
     const [irregularities, setIrregularities] = useState(allIrregularities);
     const [verbTypes, setVerbTypes] = useState(allVerbTypes);
 
@@ -32,11 +31,17 @@ export default function IrregularSarfTester() {
         setTime(0);
         setIsTimerRunning(false);
         const verbLists: Verb[][] = [];
-        if (verbTypes.includes('الماضي')) {
-            verbLists.push(pastTenseVerbs);
+        if (verbTypes.includes('الماضي المعروف')) {
+            verbLists.push(pastTenseVerbs.filter((verb) => verb.type === 'active'));
         }
-        if (verbTypes.includes('المضارع')) {
-            verbLists.push(presentTenseVerbs);
+        if (verbTypes.includes('المضارع المعروف')) {
+            verbLists.push(presentTenseVerbs.filter((verb) => verb.type === 'active'));
+        }
+        if (verbTypes.includes('الماضي المجهول')) {
+            verbLists.push(pastTenseVerbs.filter((verb) => verb.type === 'passive'));
+        }
+        if (verbTypes.includes('المضارع المجهول')) {
+            verbLists.push(presentTenseVerbs.filter((verb) => verb.type === 'passive'));
         }
         const verbList = verbLists[Math.floor(Math.random() * verbLists.length)];
         const filteredVerbs = verbList.filter((verb) => {
@@ -44,7 +49,6 @@ export default function IrregularSarfTester() {
         });
         const verb = filteredVerbs[Math.floor(Math.random() * filteredVerbs.length)];
         setCurrentVerb(verb);
-        setCurrentVerbIndex(Math.floor(Math.random() * verb.table.length));
     };
 
     const onClickPauseTimer = function () {
@@ -66,8 +70,8 @@ export default function IrregularSarfTester() {
                     Irregular Sarfing App
                 </CardTitle>
                 <CardDescription>
-                    Generates a verb. Identify the irregularity, roots, pattern and conjugation you are looking at, then
-                    recite the full conjugated verb table.
+                    Generates a verb. Identify the irregularity, roots and pattern you are looking at, then recite the
+                    full conjugated verb table.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -112,7 +116,7 @@ export default function IrregularSarfTester() {
                     <>
                         <Separator className="my-4" />
                         <div className="mt-2 rounded bg-blue-100 px-5 py-3 text-3xl">
-                            Do &quot;<strong className="font-medium">{currentVerb.table[currentVerbIndex || 0]}</strong>
+                            Do &quot;<strong className="font-medium">{currentVerb.table[0]}</strong>
                             &quot;
                         </div>
                         <div
