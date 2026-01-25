@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table';
-import { generateSarfTableFromRoot } from '@/lib/generate-sarf-table-from-root';
+import { generateSarfSagheerTableFromRoot } from '@/lib/generate-sarf-sagheer-table-from-root';
 import { sarfPatterns, PatternId, BabId } from '@/lib/sarf-patterns';
 
 interface Props {
@@ -13,7 +13,7 @@ export default function SarfPatternTable({ patternId, babId, currentRoot }: Prop
     let table: string[];
 
     if (currentRoot && patternId !== '1') {
-        table = generateSarfTableFromRoot(currentRoot, patternId);
+        table = generateSarfSagheerTableFromRoot(currentRoot, patternId);
     } else {
         table = pattern ? (Array.isArray(pattern.table) ? pattern.table : pattern.table[babId!]) : [];
     }

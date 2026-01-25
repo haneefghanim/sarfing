@@ -71,7 +71,7 @@ export default function IrregularSarfTester() {
                 </CardTitle>
                 <CardDescription>
                     Generates a verb. Identify the irregularity, roots and pattern you are looking at, then recite the
-                    full conjugated verb table.
+                    full conjugated verb table i.e. sarf kabīr.
                 </CardDescription>
             </CardHeader>
             <CardContent>

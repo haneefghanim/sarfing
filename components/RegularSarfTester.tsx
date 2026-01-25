@@ -74,7 +74,7 @@ export default function RegularSarfTester() {
             <CardHeader>
                 <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">Sarfing App</CardTitle>
                 <CardDescription>
-                    Generates a 3-letter root and a pattern to conjugate it in. Aim to recite the sarf sagheer table in
+                    Generates a 3-letter root and a pattern to conjugate it in. Aim to recite the sarf saghīr table in
                     under 15s.
                 </CardDescription>
             </CardHeader>

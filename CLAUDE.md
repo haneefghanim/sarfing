@@ -24,7 +24,7 @@ Sarfing is a Next.js application for practicing Arabic verb morphology (sarf). I
 ### Core Data Files (`lib/`)
 
 - `sarf-patterns.ts` - Defines the 10 verb patterns with their conjugation tables. Pattern 1 uses an object keyed by bab, patterns 2-10 use arrays.
-- `generate-sarf-table-from-root.ts` - Programmatically generates conjugation tables for patterns 2-10 from any root. Handles various irregularities (naaqis, ajwaf, mithaal, mudhaaf, etc.).
+- `generate-sarf-sagheer-table-from-root.ts` - Programmatically generates sarf sagheer conjugation tables for patterns 2-10 from any root. Handles various irregularities (naaqis, ajwaf, mithaal, mudhaaf, etc.).
 - `roots.ts` - List of 3-letter Arabic roots used for random generation
 - `past-tense-irregular-verbs.ts` / `present-tense-irregular-verbs.ts` - Large collections of pre-conjugated irregular verbs
 - `irregularities.ts` - Types for Arabic verb irregularity categories

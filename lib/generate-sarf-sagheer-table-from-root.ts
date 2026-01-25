@@ -19,7 +19,7 @@ function letterIsVowel(letter = '') {
  * @param {string} patternNum
  * @return {*}  {SarfPattern['table']}
  */
-export function generateSarfTableFromRoot(rootLetters: string, patternNum: string): string[] {
+export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum: string): string[] {
     rootLetters = rootLetters.replace(/\s/g, '').slice(0, 3);
 
     const firstRoot = rootLetters[0];
