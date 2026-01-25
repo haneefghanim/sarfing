@@ -186,14 +186,14 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         } else if (letterIsVowel(secondRoot)) {
             // Ajwaf
             past = 'أَ' + firstRoot + 'َا' + thirdRoot + 'َ';
-            present = 'يُ' + firstRoot + 'ِي' + thirdRoot + 'ُ';
+            present = 'يُ' + firstRoot + 'ِيْ' + thirdRoot + 'ُ';
             if (letterIsVowel(firstRoot)) {
                 beginMasdar = 'إِي';
             }
             masdar = 'إِ' + firstRoot + 'َا' + thirdRoot + 'َةً';
-            faail = 'مُ' + firstRoot + 'ِي' + thirdRoot + 'ٌ';
+            faail = 'مُ' + firstRoot + 'ِيْ' + thirdRoot + 'ٌ';
 
-            pastP = 'أُ' + firstRoot + 'ِي' + thirdRoot + 'َ';
+            pastP = 'أُ' + firstRoot + 'ِيْ' + thirdRoot + 'َ';
             presentP = 'يُ' + firstRoot + 'َا' + thirdRoot + 'ُ';
             mafool = 'مُ' + firstRoot + 'َا' + thirdRoot + 'ٌ';
             dharf = mafool;
@@ -311,7 +311,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             past = 'انْ' + firstRoot + 'َا' + thirdRoot + 'َ';
             present = 'يَنْ' + firstRoot + 'َا' + thirdRoot + 'ُ';
 
-            masdar = 'انْ' + firstRoot + 'ِيا' + thirdRoot + 'ًا';
+            masdar = 'انْ' + firstRoot + 'ِيَا' + thirdRoot + 'ًا';
             faail = 'مُنْ' + firstRoot + 'َا' + thirdRoot + 'ٌ';
 
             dharf = faail;
@@ -403,7 +403,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             masdar = 'ا' + firstRoot + 'ْتِ' + 'يَا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْتَا' + thirdRoot + 'ٌ';
 
-            pastP = 'اُ' + firstRoot + 'ْتِي' + thirdRoot + 'َ';
+            pastP = 'اُ' + firstRoot + 'ْتِيْ' + thirdRoot + 'َ';
             presentP = 'يُ' + firstRoot + 'ْتَا' + thirdRoot + 'ُ';
 
             mafool = faail;
@@ -490,12 +490,12 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         } else if (letterIsVowel(secondRoot)) {
             // Ajwaf
             past = 'اسْتَ' + firstRoot + 'َا' + thirdRoot + 'َ';
-            present = 'يَسْتَ' + firstRoot + 'ِي' + thirdRoot + 'ُ';
+            present = 'يَسْتَ' + firstRoot + 'ِيْ' + thirdRoot + 'ُ';
 
             masdar = 'اسْتِ' + firstRoot + 'َا' + thirdRoot + 'َةً';
-            faail = 'مُسْتَ' + firstRoot + 'ِي' + thirdRoot + 'ٌ';
+            faail = 'مُسْتَ' + firstRoot + 'ِيْ' + thirdRoot + 'ٌ';
 
-            pastP = 'اسْتُ' + firstRoot + 'ِي' + thirdRoot + 'َ';
+            pastP = 'اسْتُ' + firstRoot + 'ِيْ' + thirdRoot + 'َ';
             presentP = 'يُسْتَ' + firstRoot + 'َا' + thirdRoot + 'ُ';
 
             mafool = 'مُسْتَ' + firstRoot + 'َا' + thirdRoot + 'ٌ';
