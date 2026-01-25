@@ -79,15 +79,15 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
 
         if (secondRoot === thirdRoot) {
             // Mudhaaf
-            past = firstRoot + 'ا' + secondRoot + 'َّ';
-            present = 'يُ' + firstRoot + 'ا' + secondRoot + 'ُّ';
+            past = firstRoot + 'َا' + secondRoot + 'ّ' + 'َ';
+            present = 'يُ' + firstRoot + 'َا' + secondRoot + 'ّ' + 'ُ';
 
             masdar = beginMasdar + secondRoot + 'ا' + thirdRoot + 'ًا';
-            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'ا' + secondRoot + 'َّةً';
-            faail = 'مُ' + firstRoot + 'ا' + secondRoot + 'ٌّ';
+            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'َا' + secondRoot + 'ّ' + 'َةً';
+            faail = 'مُ' + firstRoot + 'َا' + secondRoot + 'ّ' + 'ٌ';
 
-            pastP = firstRoot + 'ُ' + 'و' + secondRoot + 'َّ';
-            presentP = 'يُ' + firstRoot + 'ا' + secondRoot + 'ُّ';
+            pastP = firstRoot + 'ُ' + 'وْ' + secondRoot + 'َّ';
+            presentP = 'يُ' + firstRoot + 'َا' + secondRoot + 'ُّ';
             mafool = faail;
             dharf = mafool;
             command = firstRoot + 'َا' + secondRoot + 'َّ';
@@ -168,7 +168,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             if (letterIsVowel(firstRoot)) {
                 beginMasdar = 'إِي';
             }
-            masdar = beginMasdar + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = beginMasdar + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ِ' + secondRoot + 'ٌّ';
 
             pastP = 'أُ' + firstRoot + 'ِ' + secondRoot + 'َّ';
@@ -265,11 +265,11 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             past = 'تَ' + firstRoot + 'َا' + secondRoot + 'َّ';
             present = 'يَتَ' + firstRoot + 'َا' + secondRoot + 'ُّ';
 
-            masdar = 'تَ' + firstRoot + 'َا' + secondRoot + 'ُ' + thirdRoot + 'ًا';
+            masdar = 'تَ' + firstRoot + 'َا' + secondRoot + 'ّ' + 'ًا';
             faail = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'ٌّ';
 
-            pastP = 'تُ' + firstRoot + 'ُ' + 'و' + secondRoot + 'َّ';
-            presentP = 'يُتَ' + firstRoot + 'ا' + secondRoot + 'ُّ';
+            pastP = 'تُ' + firstRoot + 'ُ' + 'وْ' + secondRoot + 'ّ' + 'َ';
+            presentP = 'يُتَ' + firstRoot + 'َا' + secondRoot + 'ّ' + 'ُ';
             mafool = faail;
             dharf = mafool;
             command = 'تَ' + firstRoot + 'َا' + secondRoot + 'َّ';
@@ -321,10 +321,10 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         } else if (secondRoot === thirdRoot) {
             // Mudhaaf
             past = 'انْ' + firstRoot + 'َ' + secondRoot + 'َّ';
-            present = 'يَن' + firstRoot + 'َ' + secondRoot + 'ُّ';
+            present = 'يَنْ' + firstRoot + 'َ' + secondRoot + 'ّ' + 'ُ';
 
             masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'َا' + thirdRoot + 'ًا';
-            faail = 'مُن' + firstRoot + 'َ' + secondRoot + 'ٌّ';
+            faail = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ّ' + 'ٌ';
 
             dharf = faail;
             command = 'انْ' + firstRoot + 'َ' + secondRoot + 'َّ';
@@ -508,13 +508,13 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             past = 'اسْتَ' + firstRoot + 'َ' + secondRoot + 'َّ';
             present = 'يَسْتَ' + firstRoot + 'ِ' + secondRoot + 'ُّ';
 
-            masdar = 'استِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'اسْتِ' + firstRoot + 'ْ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُسْتَ' + firstRoot + 'ِ' + secondRoot + 'ٌّ';
 
             pastP = 'اسْتُ' + firstRoot + 'ِ' + secondRoot + 'َّ';
             presentP = 'يُسْتَ' + firstRoot + 'َ' + secondRoot + 'ُّ';
 
-            masdar = 'استِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'اسْتِ' + firstRoot + 'ْ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             mafool = 'مُسْتَ' + firstRoot + 'َ' + secondRoot + 'ٌّ';
 
             dharf = mafool;
