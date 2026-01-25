@@ -204,7 +204,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             past = beginPast + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
             if (letterIsVowel(firstRoot)) {
-                beginMasdar = 'إِي';
+                beginMasdar = 'إِيْ';
             }
             masdar = beginMasdar + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
@@ -384,10 +384,10 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             past = 'ا' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يَ' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
-            masdar = 'ا' + 'تِّ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'ا' + 'تِّ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
-            pastP = 'اُ' + 'تُّ' + secondRoot + 'ِ' + thirdRoot + 'َ';
+            pastP = 'ا' + 'تُّ' + secondRoot + 'ِ' + thirdRoot + 'َ';
             presentP = 'يُ' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'ُ';
 
             mafool = 'مُ' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'ٌ';
@@ -531,7 +531,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             present = 'يَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
             if (letterIsVowel(firstRoot)) {
-                masdar = 'استِي' + secondRoot + 'ا' + thirdRoot + 'ًا';
+                masdar = 'اسْتِيْ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             } else {
                 masdar = 'اسْتِ' + firstRoot + 'ْ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             }
