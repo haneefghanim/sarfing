@@ -54,6 +54,9 @@ const patterns: Pattern[] = [
 // Patterns that support mithaal verbs (first root is و or ي)
 const mithaalPatterns = ['2', '3', '4', '5', '6', '8', '10'];
 
+// Patterns that support naaqis verbs (third root is و or ي)
+const naaqisPatterns = ['2', '3', '4', '5', '6', '7', '8', '10'];
+
 describe('generateSarfSagheerTableFromRoot', () => {
     patterns.forEach(({ num, name, hasDualMasdar }) => {
         describe(`Pattern ${num} (${name})`, () => {
@@ -151,6 +154,36 @@ describe('generateSarfSagheerTableFromRoot', () => {
                     }
                 });
             });
+
+            if (naaqisPatterns.includes(num)) {
+                it(`should correctly conjugate pattern ${num} naaqis verbs`, () => {
+                    const chapter = sarfHelpers.getChapterById(`naaqis/${num}`) as Chapter<true>;
+                    expect(chapter).toBeTruthy();
+
+                    const rootLetters = getRootLetters(chapter);
+                    const result = generateSarfSagheerTableFromRoot(rootLetters, num);
+                    const sarfSagheer = getSarfSagheerFromPackage(chapter);
+
+                    // Active voice
+                    expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
+                    expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
+                    expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
+
+                    // Compare masdar - some patterns have dual masdar format
+                    if (hasDualMasdar) {
+                        expect(result[2]).toContain(sarfSagheer.مصدر);
+                    } else {
+                        expect(result[2]).toBe(sarfSagheer.مصدر);
+                    }
+
+                    // Passive voice (if exists)
+                    if (sarfSagheer.مجهول) {
+                        expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
+                        expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
+                        expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
+                    }
+                });
+            }
         });
     });
 });

@@ -43,8 +43,8 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         if (letterIsVowel(thirdRoot)) {
             // Naaqis
             past = firstRoot + 'َ' + secondRoot + 'َّ' + 'ى';
-            present = 'يُ' + firstRoot + 'َ' + secondRoot + 'ِّ' + 'ي';
-            masdar = 'تَ' + firstRoot + secondRoot + 'ِيَ' + 'ةً';
+            present = 'يُ' + firstRoot + 'َ' + secondRoot + 'ِّ' + 'يْ';
+            masdar = 'تَ' + firstRoot + 'ْ' + secondRoot + 'ِيَ' + 'ةً';
             faail = 'مُ' + firstRoot + 'َ' + secondRoot + 'ٍّ';
 
             pastP = firstRoot + 'ُ' + secondRoot + 'ِّ' + 'يَ';
@@ -99,16 +99,16 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             forbid = forbid + '  ' + ' لا  ' + 'تُ' + firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         } else if (letterIsVowel(thirdRoot)) {
             // Naaqis
-            past = firstRoot + 'ا' + secondRoot + 'َ' + 'ى';
-            present = 'يُ' + firstRoot + 'ا' + secondRoot + 'ِ' + 'ي';
+            past = firstRoot + 'َا' + secondRoot + 'َ' + 'ى';
+            present = 'يُ' + firstRoot + 'َا' + secondRoot + 'ِ' + 'يْ';
 
             masdar = beginMasdar + secondRoot + 'ا' + 'ءً';
-            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'ا' + secondRoot + 'َ' + 'اةً';
-            faail = 'مُ' + firstRoot + 'ا' + secondRoot + 'ٍ';
+            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'َا' + secondRoot + 'َ' + 'اةً';
+            faail = 'مُ' + firstRoot + 'َا' + secondRoot + 'ٍ';
 
-            pastP = firstRoot + 'ُ' + 'و' + secondRoot + 'ِ' + 'يَ';
-            presentP = 'يُ' + firstRoot + 'ا' + secondRoot + 'َ' + 'ى';
-            mafool = 'مُ' + firstRoot + 'ا' + secondRoot + 'ًى';
+            pastP = firstRoot + 'ُ' + 'وْ' + secondRoot + 'ِ' + 'يَ';
+            presentP = 'يُ' + firstRoot + 'َا' + secondRoot + 'َ' + 'ى';
+            mafool = 'مُ' + firstRoot + 'َا' + secondRoot + 'ًى';
             dharf = mafool;
             command = firstRoot + 'ا' + secondRoot + 'ِ';
             forbid = ' لا  ' + 'تُ' + firstRoot + 'ا' + secondRoot + 'ِ';
@@ -146,12 +146,12 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         if (letterIsVowel(thirdRoot)) {
             // Naaqis and lafeef maqroon (acts like naaqis)
             past = beginPast + secondRoot + 'َى';
-            present = 'يُ' + firstRoot + 'ْ' + secondRoot + 'ِي';
+            present = 'يُ' + firstRoot + 'ْ' + secondRoot + 'ِيْ';
 
             if (letterIsVowel(firstRoot)) {
                 beginMasdar = 'إِي';
             }
-            masdar = beginMasdar + secondRoot + 'ا' + 'ءً';
+            masdar = beginMasdar + secondRoot + 'َا' + 'ءً';
 
             faail = 'مُ' + firstRoot + 'ْ' + secondRoot + 'ٍ';
 
@@ -254,9 +254,9 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             masdar = 'تَ' + firstRoot + 'َا' + secondRoot + 'ِ' + 'يًا';
             faail = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'ٍ';
 
-            pastP = 'تُ' + firstRoot + 'ُو' + secondRoot + 'ِيَ';
-            presentP = 'يُتَ' + firstRoot + 'ا' + secondRoot + 'َى';
-            mafool = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'ًى';
+            pastP = 'تُ' + firstRoot + 'ُوْ' + secondRoot + 'ِيَ';
+            presentP = 'يُتَ' + firstRoot + 'َا' + secondRoot + 'َى';
+            mafool = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'ًا';
             dharf = mafool;
             command = 'تَ' + firstRoot + 'َا' + secondRoot + 'َ';
             forbid = ' لا  ' + 'تَتَ' + firstRoot + 'َا' + secondRoot + 'َ';
@@ -298,9 +298,9 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         hasPassive = false;
         if (letterIsVowel(thirdRoot)) {
             past = 'انْ' + firstRoot + 'َ' + secondRoot + 'َى';
-            present = 'يَنْ' + firstRoot + 'َ' + secondRoot + 'ِي';
+            present = 'يَنْ' + firstRoot + 'َ' + secondRoot + 'ِيْ';
 
-            masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'ا' + 'ءً';
+            masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'َا' + 'ءً';
             faail = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ٍ';
 
             dharf = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ًى';
@@ -366,15 +366,15 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         } else if (letterIsVowel(thirdRoot)) {
             // Naaqis and lafeef mafrooq
             past = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'َى';
-            present = 'يَ' + firstRoot + 'ْتَ' + secondRoot + 'ِي';
+            present = 'يَ' + firstRoot + 'ْتَ' + secondRoot + 'ِيْ';
 
-            masdar = 'ا' + firstRoot + 'ْتِ' + secondRoot + 'ا' + 'ءً';
+            masdar = 'ا' + firstRoot + 'ْتِ' + secondRoot + 'َا' + 'ءً';
             faail = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ٍ';
 
             pastP = 'ا' + firstRoot + 'ْتُ' + secondRoot + 'ِ' + 'يَ';
             presentP = 'يُ' + firstRoot + 'ْتَ' + secondRoot + 'َى';
 
-            mafool = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ًى';
+            mafool = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ًا';
             dharf = mafool;
 
             command = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'ِ';
@@ -470,7 +470,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         if (letterIsVowel(thirdRoot)) {
             // Naaqis and lafeef maqroon
             past = 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'َى';
-            present = 'يَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِي';
+            present = 'يَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِيْ';
 
             if (letterIsVowel(firstRoot)) {
                 masdar = 'استِي' + secondRoot + 'َاءً';
