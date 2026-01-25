@@ -3,13 +3,6 @@ import { generateSarfSagheerTableFromRoot } from './generate-sarf-sagheer-table-
 import { sarfHelpers, type Chapter } from '@arabiyya/sarf';
 
 /**
- * Strip sukoon diacritic from Arabic text.
- */
-function stripSukoon(text: string): string {
-    return text.replace(/\u0652/g, '');
-}
-
-/**
  * Extract root letters from a chapter's first root_letters entry.
  */
 function getRootLetters(chapter: Chapter<true>): string {
@@ -21,7 +14,6 @@ function getRootLetters(chapter: Chapter<true>): string {
  * Get the صرف صغير from the @arabiyya/sarf package.
  */
 function getSarfSagheerFromPackage(chapter: Chapter<true>) {
-    // Apply root letters to get actual conjugations
     const withRoots = sarfHelpers.replaceRoots(chapter);
     return withRoots['صرف صغير'];
 }
@@ -41,283 +33,55 @@ function getSarfSagheerFromPackage(chapter: Chapter<true>) {
  * [10] dharf (ism dharf / mafool)
  */
 
+// Pattern configurations for test generation
+interface Pattern {
+    num: string;
+    name: string;
+    hasDualMasdar?: boolean;
+}
+const patterns: Pattern[] = [
+    { num: '2', name: 'تفعيل' },
+    { num: '3', name: 'مفاعلة', hasDualMasdar: true },
+    { num: '4', name: 'إفعال' },
+    { num: '5', name: 'تفعّل' },
+    { num: '6', name: 'تفاعل' },
+    { num: '7', name: 'انفعال' },
+    { num: '8', name: 'افتعال' },
+    { num: '9', name: 'افعلال' },
+    { num: '10', name: 'استفعال' }
+] as const;
+
 describe('generateSarfSagheerTableFromRoot', () => {
-    // ============================================
-    // PATTERN 2 (تفعيل)  TESTS
-    // ============================================
-    describe('Pattern 2 (تفعيل)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 2 sahih verbs', () => {
-                // Get reference from @arabiyya/sarf and use its root letters
-                const chapter = sarfHelpers.getChapterById('sahih/2') as Chapter<true>;
-                expect(chapter).toBeTruthy();
+    patterns.forEach(({ num, name, hasDualMasdar }) => {
+        describe(`Pattern ${num} (${name})`, () => {
+            describe('sahih (صحيح)', () => {
+                it(`should correctly conjugate pattern ${num} sahih verbs`, () => {
+                    const chapter = sarfHelpers.getChapterById(`sahih/${num}`) as Chapter<true>;
+                    expect(chapter).toBeTruthy();
 
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '2');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
+                    const rootLetters = getRootLetters(chapter);
+                    const result = generateSarfSagheerTableFromRoot(rootLetters, num);
+                    const sarfSagheer = getSarfSagheerFromPackage(chapter);
 
-                // Active voice - compare base letters
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
+                    // Active voice
+                    expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
+                    expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
+                    expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
 
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
+                    // Compare masdar - some patterns have dual masdar format
+                    if (hasDualMasdar) {
+                        expect(result[2]).toContain(sarfSagheer.مصدر);
+                    } else {
+                        expect(result[2]).toBe(sarfSagheer.مصدر);
+                    }
 
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 3 (مفاعلة) TESTS
-    // ============================================
-    describe('Pattern 3 (مفاعلة)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 3 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/3') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '3');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 4 (إفعال) TESTS
-    // ============================================
-    describe('Pattern 4 (إفعال)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 4 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/4') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '4');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 5 (تفعّل) TESTS
-    // ============================================
-    describe('Pattern 5 (تفعّل)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 5 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/5') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '5');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 6 (تفاعل) TESTS
-    // ============================================
-    describe('Pattern 6 (تفاعل)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 6 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/6') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '6');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 7 (انفعال) TESTS
-    // ============================================
-    describe('Pattern 7 (انفعال)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 7 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/7') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '7');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 8 (افتعال) TESTS
-    // ============================================
-    describe('Pattern 8 (افتعال)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 8 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/8') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '8');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 9 (افعلال) TESTS
-    // ============================================
-    describe('Pattern 9 (افعلال)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 9 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/9') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '9');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
-            });
-        });
-    });
-
-    // ============================================
-    // PATTERN 10 (استفعال) TESTS
-    // ============================================
-    describe('Pattern 10 (استفعال)', () => {
-        describe('sahih (صحيح)', () => {
-            it('should correctly conjugate pattern 10 sahih verbs', () => {
-                const chapter = sarfHelpers.getChapterById('sahih/10') as Chapter<true>;
-                expect(chapter).toBeTruthy();
-
-                const rootLetters = getRootLetters(chapter);
-                const result = generateSarfSagheerTableFromRoot(rootLetters, '10');
-                const sarfSagheer = getSarfSagheerFromPackage(chapter);
-
-                // Active voice
-                expect(result[0]).toBe(sarfSagheer.معروف.ماضي);
-                expect(result[1]).toBe(sarfSagheer.معروف.مضارع);
-                expect(result[3]).toBe(sarfSagheer.معروف.فاعل);
-
-                // Compare masdar
-                expect(result[2]).toBe(sarfSagheer.مصدر);
-
-                // Passive voice (if exists)
-                if (sarfSagheer.مجهول) {
-                    expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
-                    expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
-                    expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
-                }
+                    // Passive voice (if exists)
+                    if (sarfSagheer.مجهول) {
+                        expect(result[4]).toBe(sarfSagheer.مجهول.ماضي);
+                        expect(result[5]).toBe(sarfSagheer.مجهول.مضارع);
+                        expect(result[7]).toBe(sarfSagheer.مجهول.مفعول);
+                    }
+                });
             });
         });
     });

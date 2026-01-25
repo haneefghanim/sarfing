@@ -57,7 +57,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         } else {
             past = firstRoot + 'َ' + secondRoot + 'َّ' + thirdRoot + 'َ';
             present = 'يُ' + firstRoot + 'َ' + secondRoot + 'ِّ' + thirdRoot + 'ُ';
-            masdar = 'تَ' + firstRoot + secondRoot + 'ِي' + thirdRoot + 'ًا';
+            masdar = 'تَ' + firstRoot + 'ْ' + secondRoot + 'ِي' + 'ْ' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'َ' + secondRoot + 'ِّ' + thirdRoot + 'ٌ';
 
             pastP = firstRoot + 'ُ' + secondRoot + 'ِّ' + thirdRoot + 'َ';
@@ -113,19 +113,19 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             command = firstRoot + 'ا' + secondRoot + 'ِ';
             forbid = ' لا  ' + 'تُ' + firstRoot + 'ا' + secondRoot + 'ِ';
         } else {
-            past = firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'َ';
-            present = 'يُ' + firstRoot + 'ا' + secondRoot + 'ِ' + thirdRoot + 'ُ';
+            past = firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'َ';
+            present = 'يُ' + firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
-            masdar = beginMasdar + secondRoot + 'ا' + thirdRoot + 'ًا';
-            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'َ' + 'ةً';
-            faail = 'مُ' + firstRoot + 'ا' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
+            masdar = beginMasdar + secondRoot + 'َا' + thirdRoot + 'ًا';
+            masdar = masdar + '  ' + 'وَ' + '  ' + 'مُ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'َ' + 'ةً';
+            faail = 'مُ' + firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
-            pastP = firstRoot + 'ُ' + 'و' + secondRoot + 'ِ' + thirdRoot + 'َ';
-            presentP = 'يُ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ُ';
-            mafool = 'مُ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ٌ';
+            pastP = firstRoot + 'ُوْ' + secondRoot + 'ِ' + thirdRoot + 'َ';
+            presentP = 'يُ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ُ';
+            mafool = 'مُ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ٌ';
             dharf = mafool;
-            command = firstRoot + 'ا' + secondRoot + 'ِ' + thirdRoot + 'ْ';
-            forbid = ' لا  ' + 'تُ' + firstRoot + 'ا' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            forbid = ' لا  ' + 'تُ' + firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         }
     } else if (patternNum === '4') {
         // Irregularities: mithaal, ajwaf, naaqis, lafeef maqroon (acts like naaqis), mudhaaf
@@ -206,7 +206,7 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             if (letterIsVowel(firstRoot)) {
                 beginMasdar = 'إِي';
             }
-            masdar = beginMasdar + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = beginMasdar + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
             pastP = 'أُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'َ';
@@ -280,70 +280,70 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             forbid = forbid + '  ' + ' لا  ' + 'تَتَ' + firstRoot + 'َا' + secondRoot + 'ِّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَتَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ْ';
         } else {
-            past = 'تَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'َ';
-            present = 'يَتَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ُ';
+            past = 'تَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'َ';
+            present = 'يَتَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ُ';
 
-            masdar = 'تَ' + firstRoot + 'ا' + secondRoot + 'ُ' + thirdRoot + 'ًا';
-            faail = 'مُ' + 'تَ' + firstRoot + 'ا' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
+            masdar = 'تَ' + firstRoot + 'َا' + secondRoot + 'ُ' + thirdRoot + 'ًا';
+            faail = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
-            pastP = 'تُ' + firstRoot + 'ُو' + secondRoot + 'ِ' + thirdRoot + 'َ';
-            presentP = 'يُتَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ُ';
-            mafool = 'مُ' + 'تَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ٌ';
+            pastP = 'تُ' + firstRoot + 'ُوْ' + secondRoot + 'ِ' + thirdRoot + 'َ';
+            presentP = 'يُتَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ُ';
+            mafool = 'مُ' + 'تَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ٌ';
             dharf = mafool;
-            command = 'تَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ْ';
-            forbid = ' لا  ' + 'تَتَ' + firstRoot + 'ا' + secondRoot + 'َ' + thirdRoot + 'ْ';
+            command = 'تَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ْ';
+            forbid = ' لا  ' + 'تَتَ' + firstRoot + 'َا' + secondRoot + 'َ' + thirdRoot + 'ْ';
         }
     } else if (patternNum === '7') {
         // Irregularities: ajwaf, naaqis
         hasPassive = false;
         if (letterIsVowel(thirdRoot)) {
-            past = 'اِنْ' + firstRoot + 'َ' + secondRoot + 'َى';
+            past = 'انْ' + firstRoot + 'َ' + secondRoot + 'َى';
             present = 'يَنْ' + firstRoot + 'َ' + secondRoot + 'ِي';
 
-            masdar = 'اِنْ' + firstRoot + 'ِ' + secondRoot + 'ا' + 'ءً';
+            masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'ا' + 'ءً';
             faail = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ٍ';
 
             dharf = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ًى';
 
-            command = 'اِنْ' + firstRoot + 'َ' + secondRoot + 'ِ';
+            command = 'انْ' + firstRoot + 'َ' + secondRoot + 'ِ';
             forbid = ' لا  ' + 'تَنْ' + firstRoot + 'َ' + secondRoot + 'ِ';
         } else if (letterIsVowel(secondRoot)) {
-            past = 'اِنْ' + firstRoot + 'َا' + thirdRoot + 'َ';
+            past = 'انْ' + firstRoot + 'َا' + thirdRoot + 'َ';
             present = 'يَنْ' + firstRoot + 'َا' + thirdRoot + 'ُ';
 
-            masdar = 'اِنْ' + firstRoot + 'ِيا' + thirdRoot + 'ًا';
+            masdar = 'انْ' + firstRoot + 'ِيا' + thirdRoot + 'ًا';
             faail = 'مُنْ' + firstRoot + 'َا' + thirdRoot + 'ٌ';
 
             dharf = faail;
 
-            command = 'اِنْ' + firstRoot + 'َ' + thirdRoot + 'ْ';
+            command = 'انْ' + firstRoot + 'َ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَنْ' + firstRoot + 'َ' + thirdRoot + 'ْ';
         } else if (secondRoot === thirdRoot) {
             // Mudhaaf
-            past = 'اِن' + firstRoot + 'َ' + secondRoot + 'َّ';
+            past = 'انْ' + firstRoot + 'َ' + secondRoot + 'َّ';
             present = 'يَن' + firstRoot + 'َ' + secondRoot + 'ُّ';
 
-            masdar = 'اِنْ' + firstRoot + 'ِ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُن' + firstRoot + 'َ' + secondRoot + 'ٌّ';
 
             dharf = faail;
-            command = 'اِنْ' + firstRoot + 'َ' + secondRoot + 'َّ';
-            command = command + '  ' + 'اِنْ' + firstRoot + 'َ' + secondRoot + 'ِّ';
-            command = command + '  ' + 'اِنْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'انْ' + firstRoot + 'َ' + secondRoot + 'َّ';
+            command = command + '  ' + 'انْ' + firstRoot + 'َ' + secondRoot + 'ِّ';
+            command = command + '  ' + 'انْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
 
             forbid = ' لا  ' + 'تَن' + firstRoot + 'َ' + secondRoot + 'َّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَن' + firstRoot + 'ََ' + secondRoot + 'ِّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَن' + firstRoot + 'ََ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         } else {
-            past = 'اِنْ' + firstRoot + 'َ' + secondRoot + 'َ' + thirdRoot + 'َ';
+            past = 'انْ' + firstRoot + 'َ' + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يَنْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
-            masdar = 'اِنْ' + firstRoot + 'ِ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'انْ' + firstRoot + 'ِ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
             dharf = 'مُنْ' + firstRoot + 'َ' + secondRoot + 'َ' + thirdRoot + 'ٌ';
 
-            command = 'اِنْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'انْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَنْ' + firstRoot + 'َ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         }
     } else if (patternNum === '8') {
@@ -365,26 +365,26 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             forbid = ' لا  ' + 'تَتَّ' + secondRoot + 'ِ';
         } else if (letterIsVowel(thirdRoot)) {
             // Naaqis and lafeef mafrooq
-            past = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'َى';
+            past = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'َى';
             present = 'يَ' + firstRoot + 'ْتَ' + secondRoot + 'ِي';
 
-            masdar = 'اِ' + firstRoot + 'ْتِ' + secondRoot + 'ا' + 'ءً';
+            masdar = 'ا' + firstRoot + 'ْتِ' + secondRoot + 'ا' + 'ءً';
             faail = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ٍ';
 
-            pastP = 'اُ' + firstRoot + 'ْتُ' + secondRoot + 'ِ' + 'يَ';
+            pastP = 'ا' + firstRoot + 'ْتُ' + secondRoot + 'ِ' + 'يَ';
             presentP = 'يُ' + firstRoot + 'ْتَ' + secondRoot + 'َى';
 
             mafool = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ًى';
             dharf = mafool;
 
-            command = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'ِ';
+            command = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'ِ';
             forbid = ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + secondRoot + 'ِ';
         } else if (letterIsVowel(firstRoot) || firstRoot === 'ت' || firstRoot === 'ء') {
             // Mithaal
-            past = 'اِ' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'َ';
+            past = 'ا' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يَ' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
-            masdar = 'اِ' + 'تِّ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'ا' + 'تِّ' + secondRoot + 'ا' + thirdRoot + 'ًا';
             faail = 'مُ' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
             pastP = 'اُ' + 'تُّ' + secondRoot + 'ِ' + thirdRoot + 'َ';
@@ -393,14 +393,14 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             mafool = 'مُ' + 'تَّ' + secondRoot + 'َ' + thirdRoot + 'ٌ';
             dharf = mafool;
 
-            command = 'اِ' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'ا' + 'تَّ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَتَّ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         } else if (letterIsVowel(secondRoot)) {
             // Ajwaf
-            past = 'اِ' + firstRoot + 'ْتَا' + thirdRoot + 'َ';
+            past = 'ا' + firstRoot + 'ْتَا' + thirdRoot + 'َ';
             present = 'يَ' + firstRoot + 'ْتَا' + thirdRoot + 'ُ';
 
-            masdar = 'اِ' + firstRoot + 'ْتِ' + 'يَا' + thirdRoot + 'ًا';
+            masdar = 'ا' + firstRoot + 'ْتِ' + 'يَا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْتَا' + thirdRoot + 'ٌ';
 
             pastP = 'اُ' + firstRoot + 'ْتِي' + thirdRoot + 'َ';
@@ -409,57 +409,57 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
             mafool = faail;
             dharf = mafool;
 
-            command = 'اِ' + firstRoot + 'ْتَ' + thirdRoot + 'ْ';
+            command = 'ا' + firstRoot + 'ْتَ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + thirdRoot + 'ْ';
         } else if (secondRoot === thirdRoot) {
             // Mudhaaf
-            past = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'َّ';
+            past = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'َّ';
             present = 'يَ' + firstRoot + 'ْتَ' + secondRoot + 'ُّ';
 
-            masdar = 'اِ' + firstRoot + 'ْتِ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'ا' + firstRoot + 'ْتِ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ٌّ';
 
-            pastP = 'اُ' + firstRoot + 'ْتُ' + secondRoot + 'َّ';
+            pastP = 'ا' + firstRoot + 'ْتُ' + secondRoot + 'َّ';
             presentP = 'يُ' + firstRoot + 'ْتَ' + secondRoot + 'ُّ';
 
             mafool = faail;
             dharf = mafool;
 
-            command = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'َّ';
-            command = command + '  ' + 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'ِّ';
-            command = command + '  ' + 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'َّ';
+            command = command + '  ' + 'ا' + firstRoot + 'ْتَ' + secondRoot + 'ِّ';
+            command = command + '  ' + 'ا' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + secondRoot + 'َّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + secondRoot + 'ِّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         } else {
-            past = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'َ' + thirdRoot + 'َ';
+            past = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يَ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
-            masdar = 'اِ' + firstRoot + 'ْتِ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'ا' + firstRoot + 'ْتِ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             faail = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
-            pastP = 'اُ' + firstRoot + 'ْتُ' + secondRoot + 'ِ' + thirdRoot + 'َ';
+            pastP = 'ا' + firstRoot + 'ْتُ' + secondRoot + 'ِ' + thirdRoot + 'َ';
             presentP = 'يُ' + firstRoot + 'ْتَ' + secondRoot + 'َ' + thirdRoot + 'ُ';
 
             mafool = 'مُ' + firstRoot + 'ْتَ' + secondRoot + 'َ' + thirdRoot + 'ٌ';
             dharf = mafool;
 
-            command = 'اِ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'ا' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَ' + firstRoot + 'ْتَ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         }
     } else if (patternNum === '9') {
         hasPassive = false;
-        past = 'اِ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َّ';
+        past = 'ا' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َّ';
         present = 'يَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ُّ';
 
-        masdar = 'اِ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ا' + thirdRoot + 'ًا';
+        masdar = 'ا' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'َا' + thirdRoot + 'ًا';
         faail = 'مُ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ٌّ';
 
         dharf = faail;
 
-        command = 'اِ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َّ';
-        command = command + '  ' + 'اِ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ِّ';
-        command = command + '  ' + 'اِ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ِ' + thirdRoot + 'ْ';
+        command = 'ا' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َّ';
+        command = command + '  ' + 'ا' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ِّ';
+        command = command + '  ' + 'ا' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ِ' + thirdRoot + 'ْ';
 
         forbid = ' لا  ' + 'تَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َّ';
         forbid = forbid + '  ' + ' لا  ' + 'تَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ِّ';
@@ -469,81 +469,81 @@ export function generateSarfSagheerTableFromRoot(rootLetters: string, patternNum
         // Irregularitiess mithaal, ajwaf, naaqis, lafeef maqroon(acts like naaqis), mudhaaf
         if (letterIsVowel(thirdRoot)) {
             // Naaqis and lafeef maqroon
-            past = 'اِسْتَ' + firstRoot + 'ْ' + secondRoot + 'َى';
+            past = 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'َى';
             present = 'يَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِي';
 
             if (letterIsVowel(firstRoot)) {
-                masdar = 'اِستِي' + secondRoot + 'َاءً';
+                masdar = 'استِي' + secondRoot + 'َاءً';
             } else {
-                masdar = 'اِسْتِ' + firstRoot + 'ْ' + secondRoot + 'َاءً';
+                masdar = 'اسْتِ' + firstRoot + 'ْ' + secondRoot + 'َاءً';
             }
             faail = 'مُسْتَ' + firstRoot + 'ْ' + secondRoot + 'ٍ';
 
-            pastP = 'اُسْتُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + 'يَ';
+            pastP = 'اسْتُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + 'يَ';
             presentP = 'يُسْتَ' + firstRoot + 'ْ' + secondRoot + 'َى';
 
             mafool = 'مُسْتَ' + firstRoot + 'ْ' + secondRoot + 'ًى';
             dharf = mafool;
 
-            command = 'اِسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ';
+            command = 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ';
             forbid = ' لا  ' + 'تَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ';
         } else if (letterIsVowel(secondRoot)) {
             // Ajwaf
-            past = 'اِسْتَ' + firstRoot + 'َا' + thirdRoot + 'َ';
+            past = 'اسْتَ' + firstRoot + 'َا' + thirdRoot + 'َ';
             present = 'يَسْتَ' + firstRoot + 'ِي' + thirdRoot + 'ُ';
 
-            masdar = 'اِسْتِ' + firstRoot + 'َا' + thirdRoot + 'َةً';
+            masdar = 'اسْتِ' + firstRoot + 'َا' + thirdRoot + 'َةً';
             faail = 'مُسْتَ' + firstRoot + 'ِي' + thirdRoot + 'ٌ';
 
-            pastP = 'اُسْتُ' + firstRoot + 'ِي' + thirdRoot + 'َ';
+            pastP = 'اسْتُ' + firstRoot + 'ِي' + thirdRoot + 'َ';
             presentP = 'يُسْتَ' + firstRoot + 'َا' + thirdRoot + 'ُ';
 
             mafool = 'مُسْتَ' + firstRoot + 'َا' + thirdRoot + 'ٌ';
             dharf = mafool;
 
-            command = 'اِسْتَ' + firstRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'اسْتَ' + firstRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَسْتَ' + firstRoot + 'ِ' + thirdRoot + 'ْ';
         } else if (secondRoot === thirdRoot) {
             // Mudhaaf
-            past = 'اِسْتَ' + firstRoot + 'َ' + secondRoot + 'َّ';
+            past = 'اسْتَ' + firstRoot + 'َ' + secondRoot + 'َّ';
             present = 'يَسْتَ' + firstRoot + 'ِ' + secondRoot + 'ُّ';
 
-            masdar = 'اِستِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'استِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
             faail = 'مُسْتَ' + firstRoot + 'ِ' + secondRoot + 'ٌّ';
 
-            pastP = 'اُسْتُ' + firstRoot + 'ِ' + secondRoot + 'َّ';
+            pastP = 'اسْتُ' + firstRoot + 'ِ' + secondRoot + 'َّ';
             presentP = 'يُسْتَ' + firstRoot + 'َ' + secondRoot + 'ُّ';
 
-            masdar = 'اِستِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+            masdar = 'استِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
             mafool = 'مُسْتَ' + firstRoot + 'َ' + secondRoot + 'ٌّ';
 
             dharf = mafool;
-            command = 'اِسْتَ' + firstRoot + 'ِ' + secondRoot + 'َّ';
-            command = command + '  ' + 'اِسْتَ' + firstRoot + 'ِ' + secondRoot + 'ِّ';
-            command = command + '  ' + 'اِسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'اسْتَ' + firstRoot + 'ِ' + secondRoot + 'َّ';
+            command = command + '  ' + 'اسْتَ' + firstRoot + 'ِ' + secondRoot + 'ِّ';
+            command = command + '  ' + 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
 
             forbid = ' لا  ' + 'تَسْتَ' + firstRoot + 'ِ' + secondRoot + 'َّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَسْتَ' + firstRoot + 'ِ' + secondRoot + 'ِّ';
             forbid = forbid + '  ' + ' لا  ' + 'تَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         } else {
             // Includes mithaal masdar change
-            past = 'اِسْتَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َ';
+            past = 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'َ';
             present = 'يَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ُ';
 
             if (letterIsVowel(firstRoot)) {
-                masdar = 'اِستِي' + secondRoot + 'ا' + thirdRoot + 'ًا';
+                masdar = 'استِي' + secondRoot + 'ا' + thirdRoot + 'ًا';
             } else {
-                masdar = 'اِسْتِ' + firstRoot + 'ْ' + secondRoot + 'ا' + thirdRoot + 'ًا';
+                masdar = 'اسْتِ' + firstRoot + 'ْ' + secondRoot + 'َا' + thirdRoot + 'ًا';
             }
             faail = 'مُسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ٌ';
 
-            pastP = 'اُسْتُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'َ';
+            pastP = 'اسْتُ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'َ';
             presentP = 'يُسْتَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ُ';
 
             mafool = 'مُسْتَ' + firstRoot + 'ْ' + secondRoot + 'َ' + thirdRoot + 'ٌ';
             dharf = mafool;
 
-            command = 'اِسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
+            command = 'اسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
             forbid = ' لا  ' + 'تَسْتَ' + firstRoot + 'ْ' + secondRoot + 'ِ' + thirdRoot + 'ْ';
         }
     }
